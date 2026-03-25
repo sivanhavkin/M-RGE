@@ -1,0 +1,22 @@
+# API keys - never commit
+.env
+
+# Memory files - local only
+shared_memory.json
+agent_identity.json
+next_system.txt
+notes.txt
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
