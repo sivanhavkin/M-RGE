@@ -238,8 +238,16 @@ def main():
         print("------------------------\n")
 
     mode = choose_mode()
-    rounds = input("How many rounds? (default: 30): ").strip()
-    rounds = int(rounds) if rounds.isdigit() else 30
+    while True:
+        rounds_input = input("How many rounds? (default: 30): ").strip()
+        if rounds_input == "":
+            rounds = 30
+            break
+        elif rounds_input.isdigit() and int(rounds_input) > 0:
+            rounds = int(rounds_input)
+            break
+        else:
+            print("  Invalid — please enter a number.")
 
     openai_client = None
     anthropic_client = None
