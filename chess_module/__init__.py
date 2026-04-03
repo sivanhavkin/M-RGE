@@ -1,6 +1,9 @@
 """Chess module for M@RGE — Claude vs GPT, Neural Network vs Stockfish, and mixed modes."""
 
-from chess_module.chess_game import ChessGame
+try:
+    from chess_module.chess_game import ChessGame
+except ImportError:
+    ChessGame = None  # python-chess not installed
 
 __all__ = ["ChessGame"]
 
