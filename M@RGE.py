@@ -208,7 +208,6 @@ def choose_activity():
 
 def make_gpt_chess_player(model, client):
     """Return a chess player_fn backed by an OpenAI model."""
-    from chess_module.chess_game import CHESS_SYSTEM_PROMPT
     def _fn(fen, system_prompt):
         response = client.chat.completions.create(
             model=model,
