@@ -2,10 +2,16 @@
 
 try:
     from chess_module.chess_game import ChessGame
-except ImportError:
-    ChessGame = None  # python-chess not installed
+except ModuleNotFoundError as exc:
+    if exc.name == "chess":
+        ChessGame = None  # python-chess not installed
+    else:
+        raise
 
-__all__ = ["ChessGame"]
+__all__ = []
+
+if ChessGame is not None:
+    __all__.append("ChessGame")
 
 try:
     from chess_module.neural_agent import ChessNeuralAgent
@@ -16,6 +22,11 @@ else:
 
 
 def __getattr__(name):
+    if name == "ChessGame":
+        raise ImportError(
+            "ChessGame is not available because 'python-chess' is not installed.\n"
+            "Install it with:  pip install python-chess"
+        )
     if name == "ChessNeuralAgent":
         from chess_module.neural_agent import ChessNeuralAgent
         globals()[name] = ChessNeuralAgent
